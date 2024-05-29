@@ -27,8 +27,7 @@ jobs:
       - name: Documenters
         run: make documenters
       - name: Create .nojekyll file
-        run: | 
-          touch docs/build/html/.nojekyll
+        run: touch docs/build/.nojekyll
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
