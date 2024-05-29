@@ -3,6 +3,7 @@ name = "common pyspark utils"
 version = "0.1.0"
 description = "Common pyspark utils"
 authors = ["Corentin Vasseur <vasseur.corentin@gmail.com>"]
+packages = [{ include = "pyspark_utils" }]
 readme = "README.md"
 
 [tool.poetry.dependencies]
