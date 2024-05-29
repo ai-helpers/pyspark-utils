@@ -1,0 +1,31 @@
+name: Release Publication
+on:
+  release:
+    types:
+      - edited
+      - published
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  publish:
+    runs-on: decathlon
+    steps:
+      - name: Cleaners
+        uses: dktunited/.github/actions/cleaner@main
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: "1.8.1"
+      - name: Install
+        run: poetry build
+      - name: Publishers
+        run: poetry publish --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }} --repository pypi

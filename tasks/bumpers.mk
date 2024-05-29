@@ -10,6 +10,6 @@ bump-package-project: isset-PACKAGE_VERSION ## Bump the package version of the p
 bump-package-sphinxdocs: isset-PACKAGE_VERSION ## Bump the package version of the documentation.
 	sed -i.bak 's/^version = .*/version = "$(PACKAGE_VERSION)"/' docs/source/conf.py && rm docs/source/conf.py.bak
 
-bump-python: bump-python-version bump-python-project bump-python-sonarcloud bump-python-precommit ## Run all the python bumpers.
+bump-python: bump-python-version bump-python-project ## Run all the python bumpers.
 
-bump-package: bump-package-project bump-package-sphinxdocs bump-package-sonarcloud ## Run all the package bumpers.
+bump-package: bump-package-project bump-package-sphinxdocs ## Run all the package bumpers.

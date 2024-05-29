@@ -1,0 +1,33 @@
+name: Sphinx - Documentation
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  document:
+    runs-on: decathlon
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: "1.8.1"
+      - name: Install
+        run: poetry install --with documenters
+      - name: Documenters
+        run: make documenters
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: docs/build/
