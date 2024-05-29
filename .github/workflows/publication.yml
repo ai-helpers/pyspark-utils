@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   publish:
-    runs-on: decathlon
+    runs-on: ubuntu-latest
     steps:
       - name: Cleaners
         uses: dktunited/.github/actions/cleaner@main

@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   document:
-    runs-on: decathlon
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
