@@ -1,22 +1,35 @@
 name: Checkers - Quality
+
 on:
   push:
     branches:
       - "**"
     tags-ignore:
       - "**"
+
+inputs:
+  poetry-version:
+    default: "1.8.1"
+    description: Poetry Version
+
 permissions:
   contents: read
   id-token: write
+
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
+  
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: ${{ inputs.poetry-version }}
       - name: Install
         run: poetry install --with dev
       - name: Checkers
