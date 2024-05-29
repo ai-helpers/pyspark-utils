@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Pypi
+pypi-token.pypi
+
 # C extensions
 *.so
 

@@ -6,6 +6,7 @@ import pyspark.sql
 import pyspark.sql.functions as F
 from pyspark.sql.window import Window
 
+
 def get_spark_session(app_name: str) -> pyspark.sql.SparkSession:
     """Recover appropriate SparkSession
 
@@ -23,6 +24,7 @@ def get_spark_session(app_name: str) -> pyspark.sql.SparkSession:
     )
     return session
 
+
 def assert_cols_in_df(
     df: pyspark.sql.DataFrame, *columns: List[str], df_name: Optional[str] = ""
 ) -> None:
@@ -33,16 +35,12 @@ def assert_cols_in_df(
         df (pyspark.sql.DataFrame): pyspark dataframe
         df_name (Optional[str], optional): list of column names. Defaults to "".
     """
-    assert set(
-        columns
-    ).issubset(
+    assert set(columns).issubset(
         df.columns
     ), f"Columns {' & '.join(set(columns[0]) - set(df.columns))} missing from dataframe {df_name}"
 
 
-def assert_df_close(
-    df1: pyspark.sql.DataFrame, df2: pyspark.sql.DataFrame, **kwargs
-) -> None:
+def assert_df_close(df1: pyspark.sql.DataFrame, df2: pyspark.sql.DataFrame, **kwargs) -> None:
     """Asserts that two dataframes are (almost) equal, even if the order of the columns is different.
 
     Args:
@@ -60,6 +58,7 @@ def assert_df_close(
         df2_pd[cols2].sort_values(by=cols2).reset_index(drop=True),
         **kwargs,
     )
+
 
 def with_columns(
     df: pyspark.sql.DataFrame, col_func_mapping: Dict[str, pyspark.sql.Column]
@@ -94,9 +93,7 @@ def keep_first_rows(df: pyspark.sql.DataFrame, partition_cols, order_cols):
         df.withColumn(
             "rank",
             F.rank().over(
-                Window.partitionBy(*partition_cols).orderBy(
-                    *order_cols + [F.rand(seed=1)]
-                )
+                Window.partitionBy(*partition_cols).orderBy(*order_cols + [F.rand(seed=1)])
             ),
             # We add a random column in case there are ties (ties are broken arbitrarily)
         )

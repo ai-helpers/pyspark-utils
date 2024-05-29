@@ -14,18 +14,15 @@ spark_conf = {
     "master": "local",
     "spark.driver.maxResultSize": "3g",
     "spark.scheduler.mode": "FAIR",
-    "spark.sql.session.timeZone": "UTC"
+    "spark.sql.session.timeZone": "UTC",
 }
+
 
 @pytest.fixture(scope="session")
 def spark():
     conf = pyspark.SparkConf().setAll(list(spark_conf.items()))
-    return (
-        SparkSession.builder.master("local")
-        .appName("test_io")
-        .config(conf=conf)
-        .getOrCreate()
-    )
+    return SparkSession.builder.master("local").appName("test_io").config(conf=conf).getOrCreate()
+
 
 @pytest.fixture(scope="session")
 def spark_df(spark):
@@ -47,9 +44,7 @@ def test_with_columns(spark_df):
     col4 = F.col("col3") + 2
     col5 = F.lit(True)
 
-    transformed_df = with_columns(
-        spark_df, col_func_mapping={"col4": col4, "col5": col5}
-    )
+    transformed_df = with_columns(spark_df, col_func_mapping={"col4": col4, "col5": col5})
     expected_df = spark_df.withColumn("col4", col4).withColumn("col5", col5)
 
     assert_df_close(transformed_df, expected_df)
