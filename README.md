@@ -17,7 +17,7 @@
 You can install the `pyspark-utils` module via pip:
 
 ```bash
-pip install pyspark-utils
+pip install ai-helpers-pyspark-utils
 ```
 
 ## Getting Started
