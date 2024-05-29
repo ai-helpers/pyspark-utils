@@ -1,4 +1,4 @@
-# AI Helpers - Pyspark utils
+# AI Helpers - PySpark utils
 
 `pyspark-utils` is a Python module that provides a collection of utilities to simplify and enhance the use of PySpark. These utilities are designed to make working with PySpark more efficient and to reduce boilerplate code.
 
