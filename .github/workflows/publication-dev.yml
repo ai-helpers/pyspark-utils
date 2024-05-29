@@ -16,11 +16,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Poetry
-        uses: snok/install-poetry@v1
+      - name: Build and publish to pypi
+        uses: JRubics/poetry-publish@v2.0
         with:
-          version: "1.8.1"
-      - name: Install
-        run: poetry build
-      - name: Publishers
-        run: poetry publish --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }}
+          pypi_token: ${{ secrets.PYPI_PASSWORD }}

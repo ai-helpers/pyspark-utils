@@ -25,5 +25,7 @@ jobs:
           version: "1.8.1"
       - name: Install
         run: poetry build
+      - name: Setup
+        run: poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
       - name: Publishers
-        run: poetry publish --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }}
+        run: poetry publish
