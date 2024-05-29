@@ -1,4 +1,4 @@
-name: Publication - Prod
+name: Publication - Dev
 
 on: workflow_dispatch
 

@@ -35,7 +35,6 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
-    "sphinxemoji.sphinxemoji",
 ]
 
 sphinxemoji_style = "twemoji"
