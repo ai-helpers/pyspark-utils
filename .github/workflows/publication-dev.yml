@@ -14,8 +14,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Cleaners
-        uses: dktunited/.github/actions/cleaner@main
       - name: Checkout
         uses: actions/checkout@v3
       - name: Poetry
