@@ -6,20 +6,14 @@ import pyspark.sql
 import pyspark.sql.functions as F
 from pyspark.sql.window import Window
 
-
 def get_spark_session(app_name: str) -> pyspark.sql.SparkSession:
     """Recover appropriate SparkSession
 
-    Parameters
-    ----------
-    app_name : str
-        Name of application
+    Args:
+        app_name (str): Name of application
 
-    Returns
-    -------
-    SparkSession
-        A Spark session with name `app_name`
-
+    Returns:
+        pyspark.sql.SparkSession: A Spark session with name `app_name`
     """
     session = (
         pyspark.sql.SparkSession.builder.appName(app_name)
@@ -29,22 +23,15 @@ def get_spark_session(app_name: str) -> pyspark.sql.SparkSession:
     )
     return session
 
-
 def assert_cols_in_df(
     df: pyspark.sql.DataFrame, *columns: List[str], df_name: Optional[str] = ""
 ) -> None:
-    """
-    Assserts that all specified columns are present in specified dataframe.
+    """Assserts that all specified columns are present in specified dataframe.
     If not, displays an informative message.
 
-    Parameters
-    ----------
-    df: pyspark dataframe
-    columns: list of str
-        list of column names
-    df_name: str, optional
-        the optional name of the dataframe
-
+    Args:
+        df (pyspark.sql.DataFrame): pyspark dataframe
+        df_name (Optional[str], optional): list of column names. Defaults to "".
     """
     assert set(
         columns
@@ -56,15 +43,12 @@ def assert_cols_in_df(
 def assert_df_close(
     df1: pyspark.sql.DataFrame, df2: pyspark.sql.DataFrame, **kwargs
 ) -> None:
-    """
-    This function asserts that two pyspark dataframes are (almost) equal.
+    """Asserts that two dataframes are (almost) equal, even if the order of the columns is different.
 
-    Parameters
-    ----------
-    df1: pyspark dataframe
-    df2: pyspark dataframe
-    kwargs: dict, optional
-        Any attribute of methods `pandas.testing.assert_frame_equal`
+    Args:
+        df1 (pyspark.sql.DataFrame): _description_
+        df2 (pyspark.sql.DataFrame): _description_
+        kwargs (Optional[dict]): Any attribute of methods `pandas.testing.assert_frame_equal`
     """
     df1_pd: pd.DataFrame = df1.toPandas()
     df2_pd: pd.DataFrame = df2.toPandas()
@@ -77,22 +61,18 @@ def assert_df_close(
         **kwargs,
     )
 
-
 def with_columns(
     df: pyspark.sql.DataFrame, col_func_mapping: Dict[str, pyspark.sql.Column]
 ) -> pyspark.sql.DataFrame:
-    """
-    This function allows to use multiple 'withColumn' calls on a dataframe in a single command.
+    """Use multiple 'withColumn' calls on a dataframe in a single command.
     This function is tail recursive.
 
-    Parameters
-    ----------
-    df: pyspark dataframe
-    col_func_mapping: dict to map each column name with the function to apply to it
+    Args:
+        df (pyspark.sql.DataFrame): pyspark dataframe
+        col_func_mapping (Dict[str, pyspark.sql.Column]): dict to map each column name with the function to apply to it
 
-    Returns
-    -------
-    A pyspark dataframe identical to `df` but with additional columns.
+    Returns:
+        pyspark.sql.DataFrame: A pyspark dataframe identical to `df` but with additional columns.
     """
     for col_name, col_func in col_func_mapping.items():
         df = df.withColumn(col_name, col_func)
@@ -100,6 +80,16 @@ def with_columns(
 
 
 def keep_first_rows(df: pyspark.sql.DataFrame, partition_cols, order_cols):
+    """Keep the first row of each group defined by `partition_cols` and `order_cols`.
+
+    Args:
+        df (pyspark.sql.DataFrame): pyspark dataframe
+        partition_cols (_type_): _description_
+        order_cols (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     return (
         df.withColumn(
             "rank",

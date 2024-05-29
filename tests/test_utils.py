@@ -1,12 +1,31 @@
+import pyspark
 import pyspark.sql.functions as F
+from pyspark.sql import SparkSession
 import pytest
 
-from second_hand_pricing_ml.commons.spark.utils import (
+from pyspark_utils.utils import (
     assert_df_close,
     keep_first_rows,
     with_columns,
 )
 
+
+spark_conf = {
+    "master": "local",
+    "spark.driver.maxResultSize": "3g",
+    "spark.scheduler.mode": "FAIR",
+    "spark.sql.session.timeZone": "UTC"
+}
+
+@pytest.fixture(scope="session")
+def spark():
+    conf = pyspark.SparkConf().setAll(list(spark_conf.items()))
+    return (
+        SparkSession.builder.master("local")
+        .appName("test_io")
+        .config(conf=conf)
+        .getOrCreate()
+    )
 
 @pytest.fixture(scope="session")
 def spark_df(spark):
