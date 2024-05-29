@@ -26,6 +26,9 @@ jobs:
         run: poetry install --with documenters
       - name: Documenters
         run: make documenters
+      - name: Create .nojekyll file
+        run: | 
+          touch docs/build/html/.nojekyll
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
