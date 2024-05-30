@@ -1,8 +1,7 @@
-pyspark-utils
+pyspark_utils
 =============
 
 .. toctree::
    :maxdepth: 4
 
    pyspark_utils
-   tests
