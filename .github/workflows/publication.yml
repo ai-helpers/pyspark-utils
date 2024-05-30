@@ -5,6 +5,7 @@ on:
       - edited
       - published
 
+environment: release
 permissions:
   contents: read
   id-token: write

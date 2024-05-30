@@ -2,6 +2,7 @@ name: Publication - Dev
 
 on: workflow_dispatch
 
+environment: prerelease
 permissions:
   contents: read
   id-token: write

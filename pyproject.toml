@@ -5,6 +5,12 @@ description = "Common pyspark utils"
 authors = ["Corentin Vasseur <vasseur.corentin@gmail.com>"]
 packages = [{ include = "pyspark_utils" }]
 readme = "README.md"
+repository = "https://github.com/ai-helpers/pyspark-utils"
+documentation = "https://ai-helpers.github.io/pyspark-utils/"
+keywords = ["machine-learning", "pyspark", "utils"]
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
 
 [tool.poetry.dependencies]
 python = "^3.9,<3.11"
