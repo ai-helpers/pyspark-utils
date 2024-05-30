@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ai-helpers-pyspark-utils"
-version = "0.1.0a1"
+version = "0.1.0a2"
 description = "Common pyspark utils"
 authors = ["Corentin Vasseur <vasseur.corentin@gmail.com>"]
 packages = [{ include = "pyspark_utils" }]
