@@ -1,5 +1,9 @@
 # AI Helpers - PySpark utils
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ai-helpers_pyspark-utils&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ai-helpers_pyspark-utils)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ai-helpers_pyspark-utils&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ai-helpers_pyspark-utils)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ai-helpers_pyspark-utils&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ai-helpers_pyspark-utils)
+
 `pyspark-utils` is a Python module that provides a collection of utilities to simplify and enhance the use of PySpark. These utilities are designed to make working with PySpark more efficient and to reduce boilerplate code.
 
 ## Table of Contents
